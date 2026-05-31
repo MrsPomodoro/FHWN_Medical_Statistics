@@ -111,3 +111,34 @@ print(wilcox_react)
 print(wilcox_vitcap)
 
 sink()
+
+
+#-----------------------------------------------------------------------#
+
+# Task 4 -  Graphical checks
+# Perform graphical checks of the assumptions for a paired t test in the intake data set.
+
+# Load dataset
+data(intake)
+str(intake) 
+names(intake)  #names of columns
+
+# Calculate paired differences - How much did values/measurements change?
+diffs <- intake$post - intake$pre
+
+# Histogram of differences
+png("figures/4/histogram_differences.png")
+hist(diffs)
+dev.off()
+
+# Q-Q plot of differences
+png("figures/4/qqplot_differences.png")
+qqnorm(diffs)
+qqline(diffs)
+dev.off()
+
+# Boxplot of differences
+png("figures/4/boxplot_differences.png")
+boxplot(diffs)
+dev.off()
+
