@@ -142,3 +142,31 @@ png("figures/4/boxplot_differences.png")
 boxplot(diffs)
 dev.off()
 
+
+#-----------------------------------------------------------------------#
+
+# Task 5 -   Test of Normality
+# The function shapiro.test computes a test of normality based on the defree 
+# of linearity of the Q-Q plot. Apply it to the react data. Does it help to remove outliers?
+
+# H0: The data are normally distributed.
+# H1:  The data are not normally distributed.
+
+shapiro_original <- shapiro.test(react)
+# find the outliers - write down the values that R thinks are the outliers
+boxplot.stats(react)$out
+
+# exclude the outliers
+outliers <- boxplot.stats(react)$out
+react_no_outliers <- react[!react %in% outliers]
+# test after removing outliers
+shapiro_without_outliers <- shapiro.test(react_no_outliers)
+
+# Save all results into one text file
+sink("outputs/5/shapiro_results.txt")
+
+print(shapiro_original)
+print(outliers)
+print(shapiro_without_outliers)
+
+sink()
