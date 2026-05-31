@@ -15,14 +15,14 @@ library(ISwR) #all datasets are part of ISWR package
 data(react)   #load the dataset
 
 #Create a histogram
-png("figures/hist_react.png",
+png("figures/1/hist_react.png",
     width = 1000,
     height = 800)
 hist(react)
 dev.off()
 
 #create a QQ plot to check if data follows a normal distribution
-png("figures/qqplot_react.png",
+png("figures/1/qqplot_react.png",
     width = 1000,
     height = 800)
 
@@ -36,10 +36,11 @@ dev.off()
 result <- t.test(react, mu = 0)
 
 #save this resulst of t-test into output txt 
-sink("outputs/t_test_react.txt")
+sink("outputs/1/t_test_react.txt")
 print(result)
 sink()
 
+#-----------------------------------------------------------------------#
 
 # Task 2 - Vitcap dataset
 # In the data set vitcap, use a t test to compare the vital capacity for the two groups.
@@ -54,22 +55,39 @@ str(vitcap)
 vital_capacity <- vitcap$vital.capacity #numeric variable
 group <-  vitcap$group #grouping variable
 
+
+#Calculate a 99% confidence interval for the difference.
 #compute t-test 
-t.test(vital_capacity ~ group,
+result2 <-  t.test(vital_capacity ~ group,
        data = vitcap,
        conf.level = 0.99)
 
-result2 <- t.test(react, mu = 0)
 
 #save this resulst of t-test into output txt 
-sink("outputs/t_test_vitcap.txt")
+sink("outputs/2/t_test_vitcap.txt")
 print(result2)
 sink()
 
-#Calculate a 99% confidence interval for the difference.
+# The result of this comparison may be misleading. Why?
 
+# Calculate the mean age in each group. This helps investigate whether the groups differ in age.
+mean_age_per_group <-
 tapply(vitcap$age,
        vitcap$group,
        mean)
+sink("outputs/2/mean_age_per_group.txt")
+print(mean_age_per_group)
+sink()
+
+# Create a boxplot of age by group to get visual comparison of the age distributions.
+png("figures/2/boxplot.png",
+    width = 1000,
+    height = 800)
+boxplot(
+  age ~ group,
+  data = vitcap
+)
+dev.off()
 
 
+#-----------------------------------------------------------------------#
