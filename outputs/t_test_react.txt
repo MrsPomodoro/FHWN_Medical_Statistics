@@ -1,0 +1,12 @@
+
+	One Sample t-test
+
+data:  react
+t = -7.7512, df = 333, p-value = 1.115e-13
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ -0.9985214 -0.5942930
+sample estimates:
+ mean of x 
+-0.7964072 
+

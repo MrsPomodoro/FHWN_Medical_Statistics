@@ -12,14 +12,29 @@
 library(ISwR) #react dataset is part of ISWR package
 data(react)   #load the dataset
 
-hist(react)  #Create a histogram
-qqnorm(react) #create a QQ plot to check if data follows a normal distribution
-qqline(react) # add a reference line to the QQ plot
+#Create a histogram
+png("figures/hist_react.png",
+    width = 1000,
+    height = 800)
+hist(react)
+dev.off()
+
+#create a QQ plot to check if data follows a normal distribution
+png("figures/qqplot_react.png",
+    width = 1000,
+    height = 800)
+
+qqnorm(react)
+qqline(react)  # add a reference line to the QQ plot
+
+dev.off()
 
 
 # The null hypothesis is :H0: μ = 0
 # The alternative hypothesis was: H1: μ ≠ 0
+result <- t.test(react, mu = 0)
 
-t.test(react, mu = 0)
-
-# Task 2 - React dataset
+#save this resulst of t-test into output txt 
+sink("outputs/t_test_react.txt")
+print(result)
+sink()
