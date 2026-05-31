@@ -1,0 +1,14 @@
+
+	Wilcoxon signed rank test with continuity correction
+
+data:  react
+V = 9283.5, p-value = 2.075e-13
+alternative hypothesis: true location is not equal to 0
+
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  vital_capacity by group
+W = 30.5, p-value = 0.01783
+alternative hypothesis: true location shift is not equal to 0
+
