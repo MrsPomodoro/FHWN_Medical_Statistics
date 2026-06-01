@@ -170,3 +170,50 @@ print(outliers)
 print(shapiro_without_outliers)
 
 sink()
+
+#-----------------------------------------------------------------------#
+
+# Task 6 -   Test of Normality
+
+#The crossover trial in ashina can be analysed for a drug effect in a simply 
+#way (how?) if you ignore the potential period effect. 
+
+#However, you can do better.
+#Hint: Consider the intra-individual differences; if there were only a period effect 
+#present, how should the differences behave in the two groups? Compare the results 
+# of the simple method and the improved method.
+
+#load the data and look at them
+data(ashina)
+str(ashina)
+head(ashina)
+
+
+# simple analysis ignoring period effect
+simple_analysis <- t.test(
+  ashina$vas.active,
+  ashina$vas.plac,
+  paired = TRUE
+)
+
+# Calculate intra-individual differences
+ashina$diff <- ashina$vas.active - ashina$vas.plac
+
+# Improved analysis taking treatment sequence into account
+improved_result <- t.test(
+  diff ~ grp,
+  data = ashina
+)
+
+# Save results
+sink("outputs/6/ashina_results.txt")
+
+cat("Simple paired t-test\n\n")
+print(simple_analysis)
+
+cat("\n\nImproved analysis based on intra-individual differences\n\n")
+print(improved_result)
+
+sink()
+
+
