@@ -1,0 +1,24 @@
+
+Call:
+lm(formula = metabolic.rate ~ body.weight, data = rmr)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-245.74 -113.99  -32.05  104.96  484.81 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 811.2267    76.9755  10.539 2.29e-13 ***
+body.weight   7.0595     0.9776   7.221 7.03e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 157.9 on 42 degrees of freedom
+Multiple R-squared:  0.5539,	Adjusted R-squared:  0.5433 
+F-statistic: 52.15 on 1 and 42 DF,  p-value: 7.025e-09
+
+       1 
+1305.394 
+                 2.5 %   97.5 %
+(Intercept) 655.883819 966.5695
+body.weight   5.086656   9.0324
