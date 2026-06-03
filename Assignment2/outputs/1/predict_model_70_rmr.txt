@@ -1,3 +1,5 @@
+Linear Regression Model
+
 
 Call:
 lm(formula = metabolic.rate ~ body.weight, data = rmr)
@@ -17,10 +19,3 @@ Residual standard error: 157.9 on 42 degrees of freedom
 Multiple R-squared:  0.5539,	Adjusted R-squared:  0.5433 
 F-statistic: 52.15 on 1 and 42 DF,  p-value: 7.025e-09
 
-       1 
-1305.394 
-95% confidence interval: 
-
-                 2.5 %   97.5 %
-(Intercept) 655.883819 966.5695
-body.weight   5.086656   9.0324

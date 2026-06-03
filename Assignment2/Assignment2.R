@@ -41,15 +41,26 @@ model_rmr <- lm(
 # View model results
 summary(model_rmr)
 
-## According to the fitted model, what is the predicted metabolic rate
-# Predict metabolic rate for a person weighing 70 kg
-predict(
+# Save model summary into outpist
+sink("outputs/1/rmr_model_rmr.txt")
+cat("Linear Regression Model\n\n")
+print(summary(model_rmr))
+sink()
+
+# According to the fitted model, what is the predicted metabolic rate for a person weighing 70 kg
+predict_model_70_rmr <- predict(
   model_rmr,
   newdata = data.frame(body.weight = 70)
 )
 
+# Save model summary into outpist
+sink("outputs/1/predict_model_70_rmr.txt")
+cat("Linear Regression Model\n\n")
+print(summary(model_rmr))
+sink()
+
 # Calculate a 95% confidence interval for the slope
-confint(model_rmr)
+confint(model_rmr) # this function calculate 95% confidence intervals for all model's coeficients
 
 # Save results
 sink("outputs/1/rmr_results.txt")
@@ -58,5 +69,6 @@ print(predict(
   model_rmr,
   newdata = data.frame(body.weight = 70)
 ))
+cat("95% confidence interval: \n\n")
 print(confint(model_rmr))
 sink()
