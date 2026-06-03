@@ -1,0 +1,22 @@
+Linear Regression Model
+
+
+Call:
+lm(formula = sqrt(igf1) ~ age, data = juul25)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.8642 -1.1661  0.1018  0.9450  4.1136 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 18.71025    0.49462  37.828   <2e-16 ***
+age         -0.10533    0.01072  -9.829   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.741 on 120 degrees of freedom
+  (4 observations deleted due to missingness)
+Multiple R-squared:  0.446,	Adjusted R-squared:  0.4414 
+F-statistic:  96.6 on 1 and 120 DF,  p-value: < 2.2e-16
+

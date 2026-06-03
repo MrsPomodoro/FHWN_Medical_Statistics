@@ -72,3 +72,65 @@ print(predict(
 cat("95% confidence interval: \n\n")
 print(confint(model_rmr))
 sink()
+
+
+#-----------------------------------------------------------------------#
+
+# Task 2 - Juul dataset
+
+# In the juul data set, fit a linear regression model for the square root of 
+# the IGF-I concentration versus age to the group of subjects over 25 years old.
+
+# Load dataset
+data(juul)
+
+# Look at the structure of the dataset
+str(juul)
+names(juul)
+
+# Keep only subjects older than 25 years
+juul25 <- subset(
+  juul,
+  age > 25
+)
+
+# Create scatterplot
+# This helps me visualize the relationship between age and IGF-I concentration
+plot(
+  juul25$age,
+  sqrt(juul25$igf1),   #the square root of the IGF-I concentration
+  main = "Square Root of IGF-I vs Age",
+  xlab = "Age",
+  ylab = "Square Root of IGF-I"
+)
+
+# Save scatterplot
+png("figures/2/juul_scatterplot.png")
+
+plot(
+  juul25$age,
+  sqrt(juul25$igf1),
+  main = "Square Root of IGF-I vs Age",
+  xlab = "Age",
+  ylab = "Square Root of IGF-I"
+)
+
+dev.off()
+
+# Fit linear regression model
+# Square root of IGF-I is the response variable
+# Age is the predictor variable
+model_juul <- lm(
+  sqrt(igf1) ~ age,
+  data = juul25
+)
+
+# View model results
+summary(model_juul)
+
+
+# Save results
+sink("outputs/2/juul_results.txt")
+cat("Linear Regression Model\n\n")
+print(summary(model_juul))
+sink()
