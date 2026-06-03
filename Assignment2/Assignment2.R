@@ -192,4 +192,99 @@ sink("outputs/3/malaria_results.txt")
 cat("Linear Regression Model\n\n")
 print(summary(model_malaria))
 
+sink() 
+
+#-----------------------------------------------------------------------#
+
+# Task 4 - Simulated correlated data
+
+# One can generate simulated datqa from the two-dimensional normal distribution 
+#with a correlation of $\rho$ by the following technique: 
+# (a) Generate X as a normal variate with mean 0 and standard deviation 1;
+# (b) Generate Y with mean $\rho X$ and standard deviation $\sqrt{1-\rho^2}.
+
+#Use this to create scatterplots and simulated data with a given correlation. 
+# Compute the Spearman and Kendall 
+# statistics for some of these data sets.
+
+
+# Generate X as a normal variate with mean 0 and standard deviation 1
+
+#with a correlation of ρ,
+rho_values <- c(0, 0.5, 0.8)  # no coleration, weak positive colleration, strong positive coleration
+
+n <- 100     # Random Number of observations
+
+# Save results
+sink("outputs/4/correlation_results.txt")
+
+for (rho in rho_values) {
+  
+  # Generate X from N(0,1)
+  X <- rnorm(
+    n,
+    mean = 0,
+    sd = 1
+  )
+  
+  # Generate Y according to the formula from the assignment
+  Y <- rnorm(
+    n,
+    mean = rho * X,
+    sd = sqrt(1 - rho^2)
+  )
+  
+  # Create scatterplot
+  plot(
+    X,
+    Y,
+    main = paste("Simulated Data (rho =", rho, ")"),
+    xlab = "X",
+    ylab = "Y"
+  )
+  
+  # Save scatterplot
+  png(
+    paste0(
+      "figures/4/scatterplot_rho_",
+      gsub("\\.", "_", rho),
+      ".png"
+    )
+  )
+  
+  plot(
+    X,
+    Y,
+    main = paste("Simulated Data (rho =", rho, ")"),
+    xlab = "X",
+    ylab = "Y"
+  )
+  
+  dev.off()
+  
+  #  Spearman correlation
+  spearman_corr <- cor(
+    X,
+    Y,
+    method = "spearman"
+  )
+  
+  #  Kendall correlation
+  kendall_corr <- cor(
+    X,
+    Y,
+    method = "kendall"
+  )
+  
+  cat("Correlation parameter rho =", rho, "\n\n")
+  
+  cat("Spearman correlation:\n")
+  print(spearman_corr)
+  
+  cat("\nKendall correlation:\n")
+  print(kendall_corr)
+  
+  cat("\n\n")
+}
+
 sink()

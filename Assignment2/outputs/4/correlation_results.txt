@@ -1,0 +1,27 @@
+Correlation parameter rho = 0 
+
+Spearman correlation:
+[1] -0.006684668
+
+Kendall correlation:
+[1] -0.01171717
+
+
+Correlation parameter rho = 0.5 
+
+Spearman correlation:
+[1] 0.3616082
+
+Kendall correlation:
+[1] 0.2525253
+
+
+Correlation parameter rho = 0.8 
+
+Spearman correlation:
+[1] 0.7664806
+
+Kendall correlation:
+[1] 0.5745455
+
+
