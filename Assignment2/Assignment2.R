@@ -5,7 +5,7 @@ library(ISwR)
 
 # With the rmr data set, plot metabolic rate versus body weight.
 # Fit a linear regression model to the relation.
-# According to the fitted model, what is the predicted metabolic rate
+# According to the fitted model, what is the predicted metabolic rate 
 # for a body weight of 70 kg?
 # Give a 95% confidence interval for the slope of the line.
 
@@ -16,16 +16,23 @@ data(rmr)
 str(rmr)
 names(rmr)
 
-# Create a scatterplot
-# This helps visualize the relationship between body weight and metabolic rate
+#  #plot metabolic rate versus body weight
+# Create a scatterplot - this helps visualize the relationship between them
+png("figures/1/rmr_scatterplot.png")
+
 plot(
   rmr$body.weight,
-  rmr$metabolic.rate
+  rmr$metabolic.rate,
+  main = "Metabolic Rate vs Body Weight",
+  xlab = "Body Weight (kg)",
+  ylab = "Metabolic Rate"
 )
 
+dev.off()
+
+
 # Fit a linear regression model
-# Metabolic rate is the response variable
-# Body weight is the predictor variable
+# Metabolic rate is the response variable,  body weight is the predictor variable
 model_rmr <- lm(
   metabolic.rate ~ body.weight,
   data = rmr
@@ -34,6 +41,7 @@ model_rmr <- lm(
 # View model results
 summary(model_rmr)
 
+## According to the fitted model, what is the predicted metabolic rate
 # Predict metabolic rate for a person weighing 70 kg
 predict(
   model_rmr,
