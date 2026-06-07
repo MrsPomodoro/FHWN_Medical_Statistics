@@ -1,27 +1,27 @@
 Correlation parameter rho = 0 
 
 Spearman correlation:
-[1] -0.006684668
+[1] 0.1970477
 
 Kendall correlation:
-[1] -0.01171717
+[1] 0.1393939
 
 
 Correlation parameter rho = 0.5 
 
 Spearman correlation:
-[1] 0.3616082
+[1] 0.5479508
 
 Kendall correlation:
-[1] 0.2525253
+[1] 0.3874747
 
 
 Correlation parameter rho = 0.8 
 
 Spearman correlation:
-[1] 0.7664806
+[1] 0.7744494
 
 Kendall correlation:
-[1] 0.5745455
+[1] 0.5890909
 
 
