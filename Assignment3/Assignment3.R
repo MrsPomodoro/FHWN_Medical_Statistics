@@ -232,3 +232,56 @@ cat("\nPaired Wilcoxon B vs C\n")
 print(wilcox_B_C)
 sink()
 
+#---------------------------------------------------------------------------#
+# Task 4: The igf1 variable in the juul data set is arguably skewed and has 
+# different variances across Tanner groups. Try to compensate for this using 
+# logarithmic and square-root transformations, ans use the Welch test. However,
+# the analysis is still problematic - why? 
+
+data(juul)
+str(juul)
+head(juul)
+
+# tanner is stored as integer - convert to factor so it is treated as groups, not numbers
+juul$tanner <- factor(juul$tanner)
+
+# remove rows where igf1 or tanner is missing, otherwise the analysis will fail
+juul_clean <- subset(juul, !is.na(igf1) & !is.na(tanner))
+
+# plot igf1 by Tanner group to visually check for skewness and unequal variances
+png("figures/4/igf1_boxplot_original.png")
+boxplot(
+  igf1 ~ tanner,
+  data = juul_clean,
+  main = "IGF-I by Tanner Group (original)",
+  xlab = "Tanner Group",
+  ylab = "IGF-I"
+)
+dev.off()
+
+
+#  Try to compensate for this using 
+# logarithmic and square-root transformations, ans use the Welch test
+# Welch one-way ANOVA - does not assume equal variances across groups
+# var.equal = FALSE is the Welch correction  
+welch_original <- oneway.test(igf1 ~ tanner,data = juul_clean, var.equal = FALSE)
+welch_log      <- oneway.test(log(igf1) ~ tanner,  data = juul_clean, var.equal = FALSE)
+welch_sqrt     <- oneway.test(sqrt(igf1) ~ tanner, data = juul_clean, var.equal = FALSE)
+
+welch_original
+welch_log
+welch_sqrt
+
+
+# Save results
+sink("outputs/4/juul_welch_results.txt")
+
+cat("Welch Test - original IGF-I\n\n")
+print(welch_original)
+
+cat("\nWelch Test - log(IGF-I)\n\n")
+print(welch_log)
+
+cat("\nWelch Test - sqrt(IGF-I)\n\n")
+print(welch_sqrt)
+sink()

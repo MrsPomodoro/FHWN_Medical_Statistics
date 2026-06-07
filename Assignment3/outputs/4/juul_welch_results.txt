@@ -1,0 +1,26 @@
+Welch Test - original IGF-I
+
+
+	One-way analysis of means (not assuming equal variances)
+
+data:  igf1 and tanner
+F = 258.55, num df = 4.00, denom df = 154.68, p-value < 2.2e-16
+
+
+Welch Test - log(IGF-I)
+
+
+	One-way analysis of means (not assuming equal variances)
+
+data:  log(igf1) and tanner
+F = 201.48, num df = 4.00, denom df = 170.37, p-value < 2.2e-16
+
+
+Welch Test - sqrt(IGF-I)
+
+
+	One-way analysis of means (not assuming equal variances)
+
+data:  sqrt(igf1) and tanner
+F = 254.17, num df = 4.00, denom df = 162.43, p-value < 2.2e-16
+
