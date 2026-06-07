@@ -1,0 +1,44 @@
+Cox Model - sex  
+
+Call:
+coxph(formula = surv_stroke ~ sex, data = stroke)
+
+  n= 829, number of events= 485 
+
+            coef exp(coef) se(coef)      z Pr(>|z|)    
+sexMale -0.36571   0.69371  0.09615 -3.803 0.000143 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+        exp(coef) exp(-coef) lower .95 upper .95
+sexMale    0.6937      1.442    0.5746    0.8376
+
+Concordance= 0.547  (se = 0.011 )
+Likelihood ratio test= 14.97  on 1 df,   p=1e-04
+Wald test            = 14.47  on 1 df,   p=1e-04
+Score (logrank) test = 14.63  on 1 df,   p=1e-04
+
+
+
+Cox Model - age + sex
+
+Call:
+coxph(formula = surv_stroke ~ age + sex, data = stroke)
+
+  n= 829, number of events= 485 
+
+            coef exp(coef) se(coef)      z Pr(>|z|)    
+age     0.049289  1.050524 0.004374 11.268   <2e-16 ***
+sexMale 0.022332  1.022584 0.100717  0.222    0.825    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+        exp(coef) exp(-coef) lower .95 upper .95
+age         1.051     0.9519    1.0416     1.060
+sexMale     1.023     0.9779    0.8394     1.246
+
+Concordance= 0.66  (se = 0.013 )
+Likelihood ratio test= 158.6  on 2 df,   p=<2e-16
+Wald test            = 137.7  on 2 df,   p=<2e-16
+Score (logrank) test = 136.3  on 2 df,   p=<2e-16
+

@@ -64,7 +64,6 @@ cox_full <- coxph(
 
 summary(cox_full)
 
-
 # Save results
 sink("outputs/1/gvhd_km_results.txt")
 cat("Kaplan-Meier\n\n")
@@ -78,8 +77,62 @@ cat("Cox Proportional Hazards Model - Full Model\n\n")
 print(summary(cox_full))
 sink()
 
+#-----------------------------------------------------------------------#
 
+# Task 2 - graft.vs.host dataset
+# Fit Cox models to the stroke data with age and sex as predictors and with sex alone. 
+# Explain the difference.
 
 data(stroke)
 str(stroke)
 head(stroke)
+# Create survival object
+surv_stroke <- Surv(stroke$obsmonths, stroke$dead)
+
+# Plot  Kaplan-Meier curve
+png("figures/2/km_stroke.png")
+plot(
+  survfit(surv_stroke ~ sex, data = stroke),
+  col   = c("green", "purple"),
+  lty   = c(1, 2),
+  main  = "Survival after Stroke by Sex",
+  xlab  = "Time (months)",
+  ylab  = "Survival Probability",
+  mark.time = TRUE
+)
+
+legend(
+  "topright",
+  legend = c("Female", "Male"),
+  col    = c("green", "purple"),
+  lty    = c(1, 2)
+)
+
+dev.off()
+
+# Cox model with sex alone
+cox_sex <- coxph(
+  surv_stroke ~ sex,
+  data = stroke
+)
+
+summary(cox_sex)
+
+# Cox model with age and sex
+cox_age_sex <- coxph(
+  surv_stroke ~ age + sex,
+  data = stroke
+)
+
+summary(cox_age_sex)
+
+# Save results
+sink("outputs/2/stroke_cox_results.txt")
+
+cat("Cox Model - sex  \n\n")
+print(summary(cox_sex))
+
+cat("\n\nCox Model - age + sex\n\n")
+print(summary(cox_age_sex))
+sink()
+
