@@ -44,9 +44,9 @@ anova(model_zelazo)
 
 # Save results
 sink("outputs/1/zelazo_lm_results.txt")
-cat("One-Way ANOVA via lm() - Zelazo Data\n\n")
+cat("One-Way ANOVA \n\n")
 print(summary(model_zelazo))
-cat("\nANOVA Table:\n")
+cat("\n ANOVA Table:\n")
 print(anova(model_zelazo))
 sink()
 
@@ -77,7 +77,7 @@ t_active_combined <- t.test(
   combined_passive_none
 )
 
-# Save t-test results
+# save results
 sink("outputs/1/zelazo_ttests.txt")
 cat("t-test: active vs passive\n")
 print(t_active_passive)
@@ -92,3 +92,71 @@ cat("\nt-test: active vs combined (passive + none)\n")
 print(t_active_combined)
 sink()
 
+#---------------------------------------------------------------------------#
+
+# Task 2 - Lung dataset
+
+# In the lung data, do the three measurement methods give systematically different 
+# results? If so, which ones appear to be different?
+
+# Load and check the structure 
+data(lung)
+str(lung)
+head(lung)
+
+# - volume  = measurement (response variable)
+# - method  = A, B, C  
+# - subject = 1-6 ( repeated measures)
+
+# Visualize differences between methods
+png("figures/2/lung_boxplot.png")
+
+boxplot(
+  volume ~ method,
+  data = lung,
+  main = "Lung Volume by Measurement Method",
+  xlab = "Method",
+  ylab = "Volume"
+)
+
+dev.off()
+
+# usinf model with subject as blocking factor
+# subject must be included because the same 6 people were measured 3 times each
+# without it we would treat observations as independent - which is wrong
+model_lung <- lm(
+  volume ~ method + subject,
+  data = lung
+)
+
+summary(model_lung)
+anova(model_lung)
+
+# Extract values per method for paired t-tests
+method_A <- lung$volume[lung$method == "A"]
+method_B <- lung$volume[lung$method == "B"]
+method_C <- lung$volume[lung$method == "C"]
+
+# Pairwise paired t-tests to see WHICH methods differ
+t_A_B <- t.test(method_A, method_B, paired = TRUE)
+t_A_C <- t.test(method_A, method_C, paired = TRUE)
+t_B_C <- t.test(method_B, method_C, paired = TRUE)
+
+
+
+# Save results
+sink("outputs/2/lung_results.txt")
+cat("ANOVA Table:\n")
+print(anova(model_lung))
+cat("\nModel Summary:\n")
+print(summary(model_lung))
+sink()
+
+sink("outputs/2/lung_paired_ttests.txt")
+cat("A vs B\n")
+print(t_A_B)
+cat("\nA vs C\n")
+print(t_A_C)
+cat("\n B vs C\n")
+print(t_B_C)
+sink()

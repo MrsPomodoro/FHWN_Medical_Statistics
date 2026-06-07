@@ -1,0 +1,41 @@
+A vs B
+
+	Paired t-test
+
+data:  method_A and method_B
+t = -1.6654, df = 5, p-value = 0.1567
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -0.7206681  0.1540015
+sample estimates:
+mean difference 
+     -0.2833333 
+
+
+A vs C
+
+	Paired t-test
+
+data:  method_A and method_C
+t = -3.5032, df = 5, p-value = 0.01722
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -1.040263 -0.159737
+sample estimates:
+mean difference 
+           -0.6 
+
+
+ B vs C
+
+	Paired t-test
+
+data:  method_B and method_C
+t = -2.005, df = 5, p-value = 0.1013
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -0.72265949  0.08932615
+sample estimates:
+mean difference 
+     -0.3166667 
+

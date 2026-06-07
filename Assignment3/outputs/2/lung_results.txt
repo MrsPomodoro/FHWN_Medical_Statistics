@@ -1,0 +1,37 @@
+ANOVA Table:
+Analysis of Variance Table
+
+Response: volume
+          Df  Sum Sq Mean Sq F value  Pr(>F)  
+method     2 1.08111 0.54056  6.4953 0.01557 *
+subject    5 2.18278 0.43656  5.2457 0.01271 *
+Residuals 10 0.83222 0.08322                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Model Summary:
+
+Call:
+lm(formula = volume ~ method + subject, data = lung)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.35556 -0.16389 -0.03889  0.17361  0.32778 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  3.17222    0.19232  16.494  1.4e-08 ***
+methodB      0.28333    0.16656   1.701  0.11975    
+methodC      0.60000    0.16656   3.602  0.00483 ** 
+subject2    -0.83333    0.23555  -3.538  0.00538 ** 
+subject3     0.10000    0.23555   0.425  0.68016    
+subject4    -0.06667    0.23555  -0.283  0.78293    
+subject5    -0.03333    0.23555  -0.142  0.89027    
+subject6    -0.60000    0.23555  -2.547  0.02900 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.2885 on 10 degrees of freedom
+Multiple R-squared:  0.7968,	Adjusted R-squared:  0.6546 
+F-statistic: 5.603 on 7 and 10 DF,  p-value: 0.00768
+
