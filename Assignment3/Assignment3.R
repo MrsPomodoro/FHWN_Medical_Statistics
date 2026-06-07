@@ -142,8 +142,6 @@ t_A_B <- t.test(method_A, method_B, paired = TRUE)
 t_A_C <- t.test(method_A, method_C, paired = TRUE)
 t_B_C <- t.test(method_B, method_C, paired = TRUE)
 
-
-
 # Save results
 sink("outputs/2/lung_results.txt")
 cat("ANOVA Table:\n")
@@ -160,3 +158,77 @@ print(t_A_C)
 cat("\n B vs C\n")
 print(t_B_C)
 sink()
+
+#---------------------------------------------------------------------------#
+# Task 3 - Nonparametric tests for zelazo and lung
+# Repeat the previous exercises using the zelazo and lung data with 
+# the relevant nonparametric tests.
+
+#Zelazo dataset
+
+# nonparametric equivalent of one-way ANOVA is Kruskal-Wallis 
+# Used because: 3+ independent groups, no assumption of normality
+kruskal_zelazo <- kruskal.test(
+  score ~ group,
+  data = zelazo_df
+)
+
+kruskal_zelazo
+
+#  nonparametric equivalent of independent t-test is Wilcoxon rank-sum test
+# paired = FALSE because each subject is in only one group
+wilcox_active_passive <- wilcox.test(zelazo$active, zelazo$passive)
+wilcox_active_none    <- wilcox.test(zelazo$active, zelazo$none)
+wilcox_active_ctr8    <- wilcox.test(zelazo$active, zelazo$ctr8)
+
+# Combine passive + none
+wilcox_active_combined <- wilcox.test(
+  zelazo$active,
+  c(zelazo$passive, zelazo$none),
+  exact = FALSE 
+)
+
+#Lung dataset
+
+# nonparametric equivalent of repeated measures ANOVA is Friedman test
+# Used because: same subjects measured 3 times, no assumption of normality
+# Requires data in wide format (matrix: rows = subjects, columns = methods)
+lung_wide <- matrix(
+  lung$volume,
+  nrow  = 6,    # 6 subjects
+  ncol  = 3,    # 3 methods
+  byrow = TRUE  # fill row by row: subject 1 gets A,B,C; subject 2 gets A,B,C ...
+)
+
+colnames(lung_wide) <- c("A", "B", "C")
+friedman_lung <- friedman.test(lung_wide)
+friedman_lung
+
+#  Wilcoxon signed-rank tests , paired = TRUE because same subjects measured by each method
+wilcox_A_B <- wilcox.test(method_A, method_B, paired = TRUE)
+wilcox_A_C <- wilcox.test(method_A, method_C, paired = TRUE)
+wilcox_B_C <- wilcox.test(method_B, method_C, paired = TRUE)
+
+# Save Zelazo nonparametric results
+sink("outputs/3/zelazo_nonparametric.txt")
+print(kruskal_zelazo)
+print(wilcox_active_passive)
+cat("\nWilcoxon active vs none\n")
+print(wilcox_active_none)
+cat("\nWilcoxon active vs ctr8\n")
+print(wilcox_active_ctr8)
+cat("\nWilcoxon active vs combined (passive + none)\n")
+print(wilcox_active_combined)
+sink()
+
+# Save Lung nonparametric results
+sink("outputs/3/lung_nonparametric.txt")
+print(friedman_lung)
+cat("\nPaired Wilcoxon A vs B\n")
+print(wilcox_A_B)
+cat("\nPaired Wilcoxon A vs C\n")
+print(wilcox_A_C)
+cat("\nPaired Wilcoxon B vs C\n")
+print(wilcox_B_C)
+sink()
+

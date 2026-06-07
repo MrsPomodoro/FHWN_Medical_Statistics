@@ -1,0 +1,40 @@
+
+	Kruskal-Wallis rank sum test
+
+data:  score by group
+Kruskal-Wallis chi-squared = 6.8805, df = 3, p-value = 0.0758
+
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  zelazo$active and zelazo$passive
+W = 6, p-value = 0.0632
+alternative hypothesis: true location shift is not equal to 0
+
+
+Wilcoxon active vs none
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  zelazo$active and zelazo$none
+W = 9, p-value = 0.1705
+alternative hypothesis: true location shift is not equal to 0
+
+
+Wilcoxon active vs ctr8
+
+	Wilcoxon signed rank test with continuity correction
+
+data:  zelazo$active
+V = 21, p-value = 0.03552
+alternative hypothesis: true location is not equal to 0
+
+
+Wilcoxon active vs combined (passive + none)
+
+	Wilcoxon rank sum test with continuity correction
+
+data:  zelazo$active and c(zelazo$passive, zelazo$none)
+W = 15, p-value = 0.05386
+alternative hypothesis: true location shift is not equal to 0
+
