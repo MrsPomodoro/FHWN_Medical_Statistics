@@ -1,0 +1,55 @@
+t-test: active vs passive
+
+	Welch Two Sample t-test
+
+data:  zelazo$active and zelazo$passive
+t = -1.2839, df = 9.3497, p-value = 0.2301
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.4399668  0.9399668
+sample estimates:
+mean of x mean of y 
+   10.125    11.375 
+
+
+t-test: active vs none
+
+	Welch Two Sample t-test
+
+data:  zelazo$active and zelazo$none
+t = -1.8481, df = 9.9759, p-value = 0.09442
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.4929271  0.3262604
+sample estimates:
+mean of x mean of y 
+ 10.12500  11.70833 
+
+
+t-test: active vs ctr8
+
+	One Sample t-test
+
+data:  zelazo$active
+t = 17.14, df = 5, p-value = 1.238e-05
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+  8.606488 11.643512
+sample estimates:
+mean of x 
+   10.125 
+
+
+t-test: active vs combined (passive + none)
+
+	Welch Two Sample t-test
+
+data:  zelazo$active and combined_passive_none
+t = -1.868, df = 11.404, p-value = 0.08765
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.0786420  0.2453087
+sample estimates:
+mean of x mean of y 
+ 10.12500  11.54167 
+
