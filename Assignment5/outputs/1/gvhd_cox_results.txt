@@ -1,0 +1,31 @@
+Cox Proportional Hazards Model - Full Model
+
+Call:
+coxph(formula = surv_obj ~ gvhd + rcpage + donage + type + preg + 
+    index, data = graft.vs.host)
+
+  n= 37, number of events= 18 
+
+           coef exp(coef) se(coef)      z Pr(>|z|)  
+gvhd    1.68956   5.41711  0.67288  2.511   0.0120 *
+rcpage  0.01051   1.01057  0.04094  0.257   0.7974  
+donage  0.02734   1.02771  0.04061  0.673   0.5009  
+type   -0.96379   0.38145  0.37998 -2.536   0.0112 *
+preg    0.41777   1.51857  0.62771  0.666   0.5057  
+index  -0.07798   0.92498  0.14082 -0.554   0.5797  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+       exp(coef) exp(-coef) lower .95 upper .95
+gvhd      5.4171     0.1846    1.4488   20.2548
+rcpage    1.0106     0.9895    0.9327    1.0950
+donage    1.0277     0.9730    0.9491    1.1129
+type      0.3814     2.6216    0.1811    0.8033
+preg      1.5186     0.6585    0.4437    5.1969
+index     0.9250     1.0811    0.7019    1.2190
+
+Concordance= 0.808  (se = 0.052 )
+Likelihood ratio test= 19.38  on 6 df,   p=0.004
+Wald test            = 18.93  on 6 df,   p=0.004
+Score (logrank) test = 22.56  on 6 df,   p=0.001
+

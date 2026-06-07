@@ -49,6 +49,35 @@ legend(
 dev.off()
 
 
+#Test the hypothesis that the survival is the same in
+# both groups# Log-rank test = standard test for comparing survival curves
+logrank_gvhd <- survdiff(surv_obj ~ gvhd, data = graft.vs.host)
+
+logrank_gvhd
+
+# Extend analysis: include other explanatory variables using Cox model
+# Cox proportional hazards model allows multiple predictors
+cox_full <- coxph(
+  surv_obj ~ gvhd + rcpage + donage + type + preg + index,
+  data = graft.vs.host
+)
+
+summary(cox_full)
+
+
+# Save results
+sink("outputs/1/gvhd_km_results.txt")
+cat("Kaplan-Meier\n\n")
+print(summary(km_gvhd))
+cat("\nLog-rank test:\n")
+print(logrank_gvhd)
+sink()
+
+sink("outputs/1/gvhd_cox_results.txt")
+cat("Cox Proportional Hazards Model - Full Model\n\n")
+print(summary(cox_full))
+sink()
+
 
 
 data(stroke)
