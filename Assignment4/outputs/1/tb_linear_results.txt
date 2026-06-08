@@ -1,0 +1,48 @@
+Linear Dose Effect Model
+
+ANOVA Table:
+Analysis of Variance Table
+
+Response: reaction
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+animal       5 35.208   7.042  6.4353   0.00496 ** 
+logdose_num  1 68.880  68.880 62.9489 7.067e-06 ***
+Residuals   11 12.036   1.094                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Model Summary:
+
+Call:
+lm(formula = reaction ~ animal + logdose_num, data = tb.dilute)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.72917 -0.22917 -0.08333  0.23437  2.41667 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  11.0000     0.6039  18.214 1.45e-09 ***
+animal2       1.0000     0.8541   1.171 0.266408    
+animal3       2.1667     0.8541   2.537 0.027637 *  
+animal4       2.1667     0.8541   2.537 0.027637 *  
+animal5       3.5833     0.8541   4.195 0.001497 ** 
+animal6       4.0833     0.8541   4.781 0.000571 ***
+logdose_num   4.7917     0.6039   7.934 7.07e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.046 on 11 degrees of freedom
+Multiple R-squared:  0.8963,	Adjusted R-squared:  0.8398 
+F-statistic: 15.85 on 6 and 11 DF,  p-value: 7.816e-05
+
+
+95% Confidence Interval for the slope:
+                 2.5 %    97.5 %
+(Intercept)  9.6707413 12.329259
+animal2     -0.8798556  2.879856
+animal3      0.2868110  4.046522
+animal4      0.2868110  4.046522
+animal5      1.7034777  5.463189
+animal6      2.2034777  5.963189
+logdose_num  3.4624080  6.120925
