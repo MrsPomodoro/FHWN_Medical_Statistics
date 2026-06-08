@@ -1,0 +1,118 @@
+Model with original igf1:
+
+Call:
+lm(formula = igf1 ~ age * sex * tanner, data = juul25)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-299.51  -61.88   -8.53   49.10  419.82 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)        69.090     17.263   4.002 6.89e-05 ***
+age                16.257      2.002   8.121 1.86e-15 ***
+sexF               43.277     44.971   0.962   0.3362    
+tanner2          -131.126    155.492  -0.843   0.3993    
+tanner3           254.596    233.179   1.092   0.2752    
+tanner4          1001.608    194.922   5.139 3.52e-07 ***
+tanner5           837.771     99.628   8.409  < 2e-16 ***
+age:sexF           -3.202      5.092  -0.629   0.5297    
+age:tanner2        14.957     12.031   1.243   0.2142    
+age:tanner3        -5.566     16.912  -0.329   0.7422    
+age:tanner4       -51.089     12.530  -4.077 5.04e-05 ***
+age:tanner5       -41.889      6.006  -6.974 6.69e-12 ***
+sexF:tanner2      127.913    243.683   0.525   0.5998    
+sexF:tanner3      617.641    440.190   1.403   0.1610    
+sexF:tanner4     -652.707    284.485  -2.294   0.0220 *  
+sexF:tanner5      287.096    129.523   2.217   0.0269 *  
+age:sexF:tanner2   -6.221     20.181  -0.308   0.7580    
+age:sexF:tanner3  -47.831     35.253  -1.357   0.1753    
+age:sexF:tanner4   40.593     19.775   2.053   0.0404 *  
+age:sexF:tanner5  -16.175      8.723  -1.854   0.0641 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 100.1 on 760 degrees of freedom
+Multiple R-squared:  0.6728,	Adjusted R-squared:  0.6646 
+F-statistic: 82.26 on 19 and 760 DF,  p-value: < 2.2e-16
+
+
+
+Model with log(igf1):
+
+Call:
+lm(formula = log(igf1) ~ age * sex * tanner, data = juul25)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.33211 -0.16469  0.00741  0.17620  1.24455 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       4.286051   0.052939  80.962  < 2e-16 ***
+age               0.108971   0.006139  17.752  < 2e-16 ***
+sexF              0.450870   0.137910   3.269  0.00113 ** 
+tanner2           0.206438   0.476837   0.433  0.66519    
+tanner3           1.184661   0.715075   1.657  0.09799 .  
+tanner4           2.919990   0.597755   4.885 1.26e-06 ***
+tanner5           2.802473   0.305524   9.173  < 2e-16 ***
+age:sexF         -0.036254   0.015615  -2.322  0.02051 *  
+age:tanner2      -0.009474   0.036896  -0.257  0.79742    
+age:tanner3      -0.064942   0.051862  -1.252  0.21088    
+age:tanner4      -0.171140   0.038426  -4.454 9.70e-06 ***
+age:tanner5      -0.165348   0.018419  -8.977  < 2e-16 ***
+sexF:tanner2      0.260709   0.747285   0.349  0.72728    
+sexF:tanner3      1.038734   1.349902   0.769  0.44184    
+sexF:tanner4     -1.564399   0.872410  -1.793  0.07334 .  
+sexF:tanner5      0.090220   0.397201   0.227  0.82038    
+age:sexF:tanner2 -0.009639   0.061889  -0.156  0.87627    
+age:sexF:tanner3 -0.071928   0.108109  -0.665  0.50604    
+age:sexF:tanner4  0.105548   0.060643   1.740  0.08218 .  
+age:sexF:tanner5  0.003885   0.026750   0.145  0.88458    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.3069 on 760 degrees of freedom
+Multiple R-squared:  0.727,	Adjusted R-squared:  0.7202 
+F-statistic: 106.5 on 19 and 760 DF,  p-value: < 2.2e-16
+
+
+
+Model with sqrt(igf1):
+
+Call:
+lm(formula = sqrt(igf1) ~ age * sex * tanner, data = juul25)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-8.2275 -1.6124 -0.0903  1.4385 11.1109 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)        8.50382    0.44526  19.098  < 2e-16 ***
+age                0.64564    0.05163  12.505  < 2e-16 ***
+sexF               2.20169    1.15995   1.898   0.0581 .  
+tanner2           -1.56971    4.01064  -0.391   0.6956    
+tanner3            7.85921    6.01444   1.307   0.1917    
+tanner4           25.68568    5.02767   5.109 4.10e-07 ***
+tanner5           23.20832    2.56974   9.031  < 2e-16 ***
+age:sexF          -0.16952    0.13134  -1.291   0.1972    
+age:tanner2        0.22819    0.31033   0.735   0.4624    
+age:tanner3       -0.28731    0.43621  -0.659   0.5103    
+age:tanner4       -1.37698    0.32320  -4.260 2.30e-05 ***
+age:tanner5       -1.24232    0.15492  -8.019 4.02e-15 ***
+sexF:tanner2       3.39533    6.28536   0.540   0.5892    
+sexF:tanner3      13.33690   11.35393   1.175   0.2405    
+sexF:tanner4     -15.13519    7.33778  -2.063   0.0395 *  
+sexF:tanner5       4.48816    3.34083   1.343   0.1795    
+age:sexF:tanner2  -0.17065    0.52054  -0.328   0.7431    
+age:sexF:tanner3  -0.99487    0.90930  -1.094   0.2743    
+age:sexF:tanner4   0.96870    0.51007   1.899   0.0579 .  
+age:sexF:tanner5  -0.22614    0.22499  -1.005   0.3152    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.581 on 760 degrees of freedom
+Multiple R-squared:  0.7125,	Adjusted R-squared:  0.7053 
+F-statistic: 99.12 on 19 and 760 DF,  p-value: < 2.2e-16
+

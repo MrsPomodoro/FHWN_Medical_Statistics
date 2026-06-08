@@ -1,0 +1,54 @@
+ANOVA Table:
+Analysis of Variance Table
+
+Response: igf1
+                Df  Sum Sq Mean Sq  F value    Pr(>F)    
+age              1 9719832 9719832 970.6415 < 2.2e-16 ***
+sex              1  208199  208199  20.7912 5.968e-06 ***
+tanner           4 3488845  872211  87.1007 < 2.2e-16 ***
+age:sex          1  183022  183022  18.2769 2.153e-05 ***
+age:tanner       4 1853970  463492  46.2853 < 2.2e-16 ***
+sex:tanner       4   90793   22698   2.2667   0.06048 .  
+age:sex:tanner   4  106234   26559   2.6522   0.03213 *  
+Residuals      760 7610505   10014                       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Model Summary:
+
+Call:
+lm(formula = igf1 ~ age * sex * tanner, data = juul25)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-299.51  -61.88   -8.53   49.10  419.82 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(>|t|)    
+(Intercept)        69.090     17.263   4.002 6.89e-05 ***
+age                16.257      2.002   8.121 1.86e-15 ***
+sexF               43.277     44.971   0.962   0.3362    
+tanner2          -131.126    155.492  -0.843   0.3993    
+tanner3           254.596    233.179   1.092   0.2752    
+tanner4          1001.608    194.922   5.139 3.52e-07 ***
+tanner5           837.771     99.628   8.409  < 2e-16 ***
+age:sexF           -3.202      5.092  -0.629   0.5297    
+age:tanner2        14.957     12.031   1.243   0.2142    
+age:tanner3        -5.566     16.912  -0.329   0.7422    
+age:tanner4       -51.089     12.530  -4.077 5.04e-05 ***
+age:tanner5       -41.889      6.006  -6.974 6.69e-12 ***
+sexF:tanner2      127.913    243.683   0.525   0.5998    
+sexF:tanner3      617.641    440.190   1.403   0.1610    
+sexF:tanner4     -652.707    284.485  -2.294   0.0220 *  
+sexF:tanner5      287.096    129.523   2.217   0.0269 *  
+age:sexF:tanner2   -6.221     20.181  -0.308   0.7580    
+age:sexF:tanner3  -47.831     35.253  -1.357   0.1753    
+age:sexF:tanner4   40.593     19.775   2.053   0.0404 *  
+age:sexF:tanner5  -16.175      8.723  -1.854   0.0641 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 100.1 on 760 degrees of freedom
+Multiple R-squared:  0.6728,	Adjusted R-squared:  0.6646 
+F-statistic: 82.26 on 19 and 760 DF,  p-value: < 2.2e-16
+

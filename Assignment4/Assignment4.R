@@ -17,7 +17,7 @@ head(tb.dilute)
 # animal   = blocking factor (6 animals, repeated measures)
 # logdose  =factor with 3 levels: -0.5, 0, 0.5
 
-# --- Two-way ANOVA ---
+# Two-way ANOVA 
 # Perform a two-way analysis of variance on the tb.dilute data.
 # animal is a blocking factor (same animals measured at each dose)
 # logdose is the treatment factor
@@ -115,6 +115,100 @@ for (i in 1:6) {
   abline(lm(reaction ~ logdose_num, data = animal_data), col = i)
 }
 
+dev.off()
+#-----------------------------------------------------------------------#
+# Task 2 - juul dataset
+
+# For the juul data, fit a model for igf1 with interaction between
+# age, sex and Tanner stage for those under 25 years old.
+# Explain the interpretation of the model.
+# Hint: A plot of the fitted values against age should be helpful.
+# Use diagnostic plots to evaluate possible transformations of the
+# dependent variable: untransformed, log, or square root.
+
+data(juul)
+str(juul)
+head(juul)
+
+# tanner is stored as integer - convert to factor so R treats it as groups
+juul$tanner <- factor(juul$tanner)
+
+# sex is stored as numeric - convert to factor with labels
+juul$sex <- factor(juul$sex, labels = c("M", "F"))
+
+# keep only subjects under 25 with complete data
+juul25 <- subset(
+  juul,
+  age < 25 & !is.na(igf1) & !is.na(age) & !is.na(sex) & !is.na(tanner)
+)
+
+str(juul25)
+
+# Fit a model for igf1 with interaction between age, sex and Tanner stage.
+# effect of age can differ by sex AND by tanner group
+model_juul <- lm(
+  igf1 ~ age * sex * tanner,
+  data = juul25
+)
+
+summary(model_juul)
+anova(model_juul)
+
+sink("outputs/2/juul_model_results.txt")
+cat("ANOVA Table:\n")
+print(anova(model_juul))
+cat("\nModel Summary:\n")
+print(summary(model_juul))
+sink()
+
+# Explain the interpretation of the model.
+# Hint: A plot of the fitted values against age should be helpful.
+
+png("figures/2/juul_fitted_vs_age.png")
+
+plot(
+  juul25$age,
+  fitted(model_juul),
+  col  = as.integer(juul25$tanner),
+  pch  = as.integer(juul25$sex),
+  main = "Fitted IGF-I Values vs Age",
+  xlab = "Age",
+  ylab = "Fitted IGF-I"
+)
 
 dev.off()
 
+# Use diagnostic plots to evaluate possible transformations
+# of the dependent variable: untransformed, log, or square root.
+
+png("figures/2/diagnostics_original.png")
+par(mfrow = c(2, 2))
+plot(lm(igf1 ~ age * sex * tanner, data = juul25))
+dev.off()
+
+png("figures/2/diagnostics_log.png")
+par(mfrow = c(2, 2))
+plot(lm(log(igf1) ~ age * sex * tanner, data = juul25))
+dev.off()
+
+# square-root transformed igf1
+png("figures/2/diagnostics_sqrt.png")
+par(mfrow = c(2, 2))
+plot(lm(sqrt(igf1) ~ age * sex * tanner, data = juul25))
+dev.off()
+
+par(mfrow = c(1, 1))
+
+# save transformation comparison
+sink("outputs/2/juul_transformations.txt")
+
+cat("Model with original igf1:\n")
+print(summary(lm(igf1 ~ age * sex * tanner, data = juul25)))
+
+cat("\n\nModel with log(igf1):\n")
+print(summary(lm(log(igf1) ~ age * sex * tanner, data = juul25)))
+
+cat("\n\nModel with sqrt(igf1):\n")
+print(summary(lm(sqrt(igf1) ~ age * sex * tanner, data = juul25)))
+
+sink()
